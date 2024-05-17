@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './graphql/models/User';
 import { UserSetting } from './graphql/models/UserSetting';
 import { UserModule } from './user/user.module';
+import { UserSettingService } from './user/UserSettingService';
 
 @Module({
   imports: [
@@ -22,10 +23,11 @@ import { UserModule } from './user/user.module';
       database: 'database',
       entities: [User, UserSetting],
       synchronize: true,
+      logging: true,
     }),
     UserModule,
   ],
   controllers: [],
-  providers: [UserSettingResolver],
+  providers: [],
 })
 export class AppModule {}

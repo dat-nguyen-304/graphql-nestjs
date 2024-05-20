@@ -1,12 +1,12 @@
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { UserSettingResolver } from './userSetting/userSetting.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/user.model';
 import { UserSetting } from './userSetting/userSetting.model';
 import { UserModule } from './user/user.module';
-import { UserSettingService } from './userSetting/userSetting.service';
+import { ProductModule } from './product/product.module';
+import { Product } from './product/product.model';
 
 @Module({
   imports: [
@@ -21,11 +21,12 @@ import { UserSettingService } from './userSetting/userSetting.service';
       username: 'user',
       password: 'password',
       database: 'database',
-      entities: [User, UserSetting],
+      entities: [User, UserSetting, Product],
       synchronize: true,
       // logging: true,
     }),
     UserModule,
+    ProductModule,
   ],
   controllers: [],
   providers: [],

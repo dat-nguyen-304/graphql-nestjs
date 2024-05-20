@@ -26,7 +26,6 @@ export class UserResolver {
   ) {}
 
   @Query((returns) => User, { nullable: true })
-  @Query((returns) => User, { nullable: true })
   getUserById(@Args('id', { type: () => Int }) id: number) {
     return this.userService.getUserById(id);
   }

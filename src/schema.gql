@@ -15,14 +15,24 @@ type User {
   settings: UserSetting
 }
 
+type Product {
+  id: Int!
+  name: String!
+  price: Float!
+  user: User
+}
+
 type Query {
   getUserById(id: Int!): User
   getUsers: [User!]!
+  getProductById(id: Int!): Product
+  getProducts: [Product!]!
 }
 
 type Mutation {
   createUser(createUserData: CreateUserInput!): User!
   createUserSettings(createUserSettingsData: createUserSettingInput!): UserSetting!
+  createProduct(createProductData: CreateProductInput!): Product!
 }
 
 input CreateUserInput {
@@ -34,4 +44,10 @@ input createUserSettingInput {
   userId: Int!
   receiveNotifications: Boolean = false
   receiveEmails: Boolean = false
+}
+
+input CreateProductInput {
+  name: String!
+  price: Float!
+  userId: Int!
 }

@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from '../graphql/models/User';
-import { UserSetting } from '../graphql/models/UserSetting';
+import { User } from '../user/user.model';
+import { UserSetting } from './userSetting.model';
 import { Repository } from 'typeorm';
-import { createUserSettingInput } from 'src/graphql/utils/CreateUserSettingInput';
+import { createUserSettingInput } from './userSetting.type';
 
 @Injectable()
 export class UserSettingService {

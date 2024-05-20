@@ -10,11 +10,11 @@ import {
 } from '@nestjs/graphql';
 import { userSettings } from 'src/__mock__/MockUserSettings';
 import { users } from 'src/__mock__/MockUsers';
-import { User } from 'src/graphql/models/User';
-import { UserSetting } from 'src/graphql/models/UserSetting';
-import { CreateUserInput } from 'src/graphql/utils/CreateUserInput';
-import { UserService } from './UserService';
-import { UserSettingService } from './UserSettingService';
+import { User } from './user.model';
+import { UserSetting } from '../userSetting/userSetting.model';
+import { CreateUserInput } from './user.type';
+import { UserService } from './user.service';
+import { UserSettingService } from '../userSetting/userSetting.service';
 
 export let incrementalId = 10;
 

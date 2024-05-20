@@ -7,9 +7,14 @@ import { UserSetting } from './userSetting/userSetting.model';
 import { UserModule } from './user/user.module';
 import { ProductModule } from './product/product.module';
 import { Product } from './product/product.model';
+import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: 'src/schema.gql',
@@ -27,6 +32,7 @@ import { Product } from './product/product.model';
     }),
     UserModule,
     ProductModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],

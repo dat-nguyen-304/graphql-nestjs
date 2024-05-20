@@ -24,6 +24,10 @@ type User {
   products: [Product!]!
 }
 
+type LoginResponse {
+  access_token: String!
+}
+
 type Query {
   getUserById(id: Int!): User
   getUsers: [User!]!
@@ -37,6 +41,7 @@ type Mutation {
   deleteUser(deleteUserData: DeleteUserInput!): String!
   createUserSettings(createUserSettingsData: createUserSettingInput!): UserSetting!
   createProduct(createProductData: CreateProductInput!): Product!
+  login(loginInput: LoginInput!): LoginResponse!
 }
 
 input CreateUserInput {
@@ -64,4 +69,8 @@ input CreateProductInput {
   name: String!
   price: Float!
   userId: Int!
+}
+
+input LoginInput {
+  username: String!
 }

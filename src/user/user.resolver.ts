@@ -1,4 +1,4 @@
-import { Inject } from '@nestjs/common';
+import { Inject, UseGuards } from '@nestjs/common';
 import {
   Resolver,
   Query,
@@ -17,6 +17,8 @@ import { UserService } from './user.service';
 import { UserSettingService } from '../userSetting/userSetting.service';
 import { ProductService } from 'src/product/product.service';
 import { Product } from 'src/product/product.model';
+import { GqlAuthGuard } from 'src/jwt-auth/jwt-auth.guard';
+import { CurrentUser } from 'src/auth/auth.decorator';
 
 export let incrementalId = 10;
 
@@ -34,7 +36,9 @@ export class UserResolver {
   }
 
   @Query(() => [User])
-  getUsers() {
+  @UseGuards(GqlAuthGuard)
+  async getUsers(@CurrentUser() user: User) {
+    console.log({ user });
     return this.userService.getUsers();
   }
 

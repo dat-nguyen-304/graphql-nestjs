@@ -21,6 +21,10 @@ export class UserService {
     });
   }
 
+  getUserByUsername(username: string) {
+    return this.userRepository.findOneBy({ username });
+  }
+
   createUser(createUserData: CreateUserInput) {
     const newUser = this.userRepository.create(createUserData);
     return this.userRepository.save(newUser);

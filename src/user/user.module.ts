@@ -18,5 +18,6 @@ import { ProductService } from 'src/product/product.service';
     UserSettingService,
     ProductService,
   ],
+  exports: [UserService],
 })
 export class UserModule {}

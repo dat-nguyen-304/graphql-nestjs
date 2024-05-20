@@ -4,9 +4,11 @@ import {
   Column,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Product } from 'src/product/product.model';
 
 @Entity({ name: 'users' })
 @ObjectType()
@@ -27,4 +29,8 @@ export class User {
   @JoinColumn()
   @Field({ nullable: true })
   settings?: UserSetting;
+
+  @OneToMany(() => Product, (product) => product.user)
+  @Field(() => [Product], { defaultValue: [] })
+  products: Product[];
 }

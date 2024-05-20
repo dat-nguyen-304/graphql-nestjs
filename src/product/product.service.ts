@@ -8,30 +8,39 @@ import { User } from 'src/user/user.model';
 @Injectable()
 export class ProductService {
   constructor(
-    @InjectRepository(Product) private ProductRepository: Repository<Product>,
-    @InjectRepository(User) private UserRepository: Repository<User>,
+    @InjectRepository(Product) private productRepository: Repository<Product>,
+    @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
 
   getProducts() {
-    return this.ProductRepository.find();
+    return this.productRepository.find();
   }
 
   getUserById(id: number) {
-    return this.UserRepository.findOne({
+    return this.userRepository.findOne({
       where: { id },
       // relations: ['users'],
     });
   }
 
   getProductById(id: number) {
-    return this.ProductRepository.findOne({
+    return this.productRepository.findOne({
       where: { id },
       // relations: ['users'],
     });
   }
 
-  createProduct(createProductData: CreateProductInput) {
-    const newProduct = this.ProductRepository.create(createProductData);
-    return this.ProductRepository.save(newProduct);
+  async createProduct(createProductData: CreateProductInput) {
+    const findUser = await this.userRepository.findOneBy({
+      id: createProductData.userId,
+    });
+
+    if (!findUser) throw new Error('User Not Found');
+    const newProduct = this.productRepository.create(createProductData);
+    return this.productRepository.save(newProduct);
+  }
+
+  getProductsByUserId(userId: number) {
+    return this.productRepository.findBy({ userId });
   }
 }

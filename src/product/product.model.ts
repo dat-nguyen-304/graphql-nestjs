@@ -19,12 +19,16 @@ export class Product {
   @Field()
   name: string;
 
-  @Column()
+  @Column('float')
   @Field((type) => Float)
   price: number;
 
+  @Column()
+  @Field(() => Int)
+  userId: number;
+
   @ManyToOne(() => User)
   @JoinColumn()
-  @Field({ nullable: true })
+  @Field(() => User, { nullable: true })
   user: User;
 }

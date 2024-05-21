@@ -10,7 +10,7 @@ import {
 import { Product } from './product.model';
 import { ProductService } from './product.service';
 import { CreateProductInput } from './product.type';
-import { User } from 'src/user/user.model';
+import { User } from '../user/user.model';
 
 export let incrementalId = 10;
 

@@ -8,7 +8,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Product } from 'src/product/product.model';
+import { Product } from '../product/product.model';
 
 @Entity({ name: 'users' })
 @ObjectType()

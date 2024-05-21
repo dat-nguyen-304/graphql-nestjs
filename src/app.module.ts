@@ -1,5 +1,6 @@
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user/user.model';
@@ -8,7 +9,6 @@ import { UserModule } from './user/user.module';
 import { ProductModule } from './product/product.module';
 import { Product } from './product/product.model';
 import { AuthModule } from './auth/auth.module';
-import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -22,10 +22,10 @@ import { ConfigModule } from '@nestjs/config';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
-      port: 3306,
+      port: process.env.NODE_ENV === 'TEST' ? 3307 : 3306,
       username: 'user',
       password: 'password',
-      database: 'database',
+      database: process.env.NODE_ENV === 'TEST' ? 'databasetest' : 'database',
       entities: [User, UserSetting, Product],
       synchronize: true,
       // logging: true,

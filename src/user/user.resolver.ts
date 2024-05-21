@@ -8,17 +8,15 @@ import {
   Parent,
   Mutation,
 } from '@nestjs/graphql';
-import { userSettings } from 'src/__mock__/MockUserSettings';
-import { users } from 'src/__mock__/MockUsers';
 import { User } from './user.model';
 import { UserSetting } from '../userSetting/userSetting.model';
 import { CreateUserInput, DeleteUserInput, UpdateUserInput } from './user.type';
 import { UserService } from './user.service';
 import { UserSettingService } from '../userSetting/userSetting.service';
-import { ProductService } from 'src/product/product.service';
-import { Product } from 'src/product/product.model';
-import { GqlAuthGuard } from 'src/jwt-auth/jwt-auth.guard';
-import { CurrentUser } from 'src/auth/auth.decorator';
+import { ProductService } from '../product/product.service';
+import { Product } from '../product/product.model';
+import { GqlAuthGuard } from '../jwt-auth/jwt-auth.guard';
+import { CurrentUser } from '../auth/auth.decorator';
 
 export let incrementalId = 10;
 
@@ -38,7 +36,6 @@ export class UserResolver {
   @Query(() => [User])
   @UseGuards(GqlAuthGuard)
   async getUsers(@CurrentUser() user: User) {
-    console.log({ user });
     return this.userService.getUsers();
   }
 

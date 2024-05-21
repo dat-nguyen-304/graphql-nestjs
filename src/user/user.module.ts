@@ -6,8 +6,8 @@ import { User } from './user.model';
 import { UserSetting } from '../userSetting/userSetting.model';
 import { UserSettingService } from '../userSetting/userSetting.service';
 import { UserSettingResolver } from '../userSetting/userSetting.resolver';
-import { Product } from 'src/product/product.model';
-import { ProductService } from 'src/product/product.service';
+import { Product } from '../product/product.model';
+import { ProductService } from '../product/product.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User, UserSetting, Product])],

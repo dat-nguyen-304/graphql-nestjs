@@ -9,7 +9,7 @@ import { UserModule } from './user/user.module';
 import { ProductModule } from './product/product.module';
 import { Product } from './product/product.model';
 import { AuthModule } from './auth/auth.module';
-
+require('dotenv').config();
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -23,9 +23,12 @@ import { AuthModule } from './auth/auth.module';
       type: 'mysql',
       host: 'localhost',
       port: process.env.NODE_ENV === 'TEST' ? 3307 : 3306,
-      username: 'user',
-      password: 'password',
-      database: process.env.NODE_ENV === 'TEST' ? 'databasetest' : 'database',
+      username: process.env.USER_NAME,
+      password: process.env.PASSWORD,
+      database:
+        process.env.NODE_ENV === 'TEST'
+          ? process.env.DB_TEST_NAME
+          : process.env.DB_NAME,
       entities: [User, UserSetting, Product],
       synchronize: true,
       // logging: true,
